@@ -3,7 +3,7 @@ from google import genai
 from decouple import config
 
 GEMINI_API_KEY = config("GEMINI_API_KEY")
-prompt = ["Explain about AI in 400 words"]
+prompt = input("Enter a prompt:")
 
 client = genai.Client(api_key=GEMINI_API_KEY)
 
@@ -12,5 +12,5 @@ response = client.models.generate_content_stream(
     contents= prompt
 )
 
-for i in response:
-    print(i.text)
+for chunk in response:
+    print(chunk.text)
